@@ -75,9 +75,9 @@ const SearchPage = ()=> {
                             <option value="orders">
                                 Orders
                             </option>
-                            <option value="price">
+                            {/* <option value="price">
                                 Price
-                            </option>
+                            </option> */}
                         </select>
                         
                         <button onClick={()=>setOrder(order==-1?1:-1)} className=" flex justify-center items-center  rounded-sm  w-6 bg-transparent outline-none border-none  ">

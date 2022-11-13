@@ -50,7 +50,7 @@ const ProductPage = ()=> {
         <div className="w-full bg-white overflow-hidden sm:rounded-lg flex sm:flex-row flex-col " >
 
           <div className="w-screen max-w-[500px] aspect-square bg-slate-400 ">
-            <ItemViewer items={product? product.skus[selectedSku].images : []} />
+            <ItemViewer items={product?  product.skus[selectedSku].images.map(im=><img className=" w-full h-full object-cover" src={im} />) : []} />
           </div>
 
           <div className='flex-1 px-5 py-2'>
@@ -60,7 +60,7 @@ const ProductPage = ()=> {
               </div>
 
               <div className='border-b border-b-gray-200 flex flex-col py-2'>
-                  <span className='font-bold text-2xl text-gray-800' >$ { product?.skus[selectedSku].price as number / 1000}</span>
+                  <span className='font-bold text-2xl text-gray-800' >$ { product?.skus[selectedSku].price}</span>
               </div>
 
               <div className='border-b border-b-gray-200 flex flex-col py-2'>

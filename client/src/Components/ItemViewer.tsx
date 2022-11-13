@@ -1,9 +1,9 @@
 
-import {useState} from 'react'
+import {ReactNode, useState} from 'react'
 import { BsChevronLeft,BsChevronRight } from 'react-icons/bs';
 
 interface itemViewerProps{
-    items: string[]
+    items: ReactNode[]
     rounded?:boolean
     dotIndicators?:boolean
 }
@@ -35,7 +35,7 @@ const handleControl= (nindex:number)=>{
                             transform: `translateX(${(ind -index) * 100}%)`,
                         }}
                  >
-                    <img className=" w-full h-full object-cover" src={i} />
+                    {i}
                 </div>
                 )    
             )}

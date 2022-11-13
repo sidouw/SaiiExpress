@@ -12,7 +12,7 @@ const HomePage = ()=> {
       <div className="max-w-[1200px] mx-auto">
         <MainHomeSection/>
         <FeaturedCategories/>
-        <MoreProducts/>
+        <MoreProducts/> 
         
       </div>
     </div>

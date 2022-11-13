@@ -73,6 +73,38 @@ router.patch('/productsU',async(req,res)=>{
 //     }
 // })
 
+
+router.get('/products/bestSelling',async (req,res)=>{
+    try {
+        const category = req.query.cat 
+        const limit = Number(req.query.lim) || 30
+        const $match={}
+        if(category)
+            $match.category = category
+
+        const pipeline = [{
+            $match
+        },{
+            $sort : {
+               orders :-1,
+               rating:-1
+            }
+         },
+         {
+            $limit : limit
+         }]
+        const product = await Product.aggregate(pipeline)
+        if(! product){
+            return  res.status(400).send({error:'Product Not Found'})
+        }
+        res.send(product)
+    } catch (error) {
+        console.log(error);
+        res.status(400).send({error})
+    }
+
+})
+
 // Find product by ID
 router.get('/products/:id',async (req,res)=>{
     try {
@@ -87,6 +119,7 @@ router.get('/products/:id',async (req,res)=>{
     }
 
 })
+
 
 // Find all products 
 router.get('/products',async (req,res)=>{

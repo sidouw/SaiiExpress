@@ -1,34 +1,42 @@
-import { BsList,BsGenderFemale,BsGenderMale,BsPhone,BsLaptop,BsCamera,BsHandbag,BsGearWideConnected } from "react-icons/bs";
+import { BsList,BsGenderFemale,BsGenderMale,BsPhone,BsLaptop,BsHandbag,BsGearWideConnected, BsThreeDots } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 
 export const categoryList=[
     {
         icon:<BsGenderFemale  size={20} color={"grey"}/>,
-        text:"Women's Fashion"
+        text:"Women's Fashion",
+        cat:"women"
     },
     {
         icon:<BsGenderMale size={20} color={"grey"}/>,
-        text:"Men's Fashion"
+        text:"Men's Fashion",
+        cat:"men"
     },
     {
         icon:<BsPhone size={20} color={"grey"}/>,
-        text:"Phones & Telecommunication"
+        text:"Phones & Telecommunication",
+        cat:"phone"
     },
     {
         icon:<BsLaptop size={20} color={"grey"}/>,
-        text:"Computer, Office"
-    },
-    {
-        icon:<BsCamera size={20} color={"grey"}/>,
-        text:"Consumer Electronics"
+        text:"Computer, Office",
+        cat:"computer"
     },
     {
         icon:<BsHandbag size={20} color={"grey"}/>,
-        text:"Accessories"
+        text:"Home",
+        cat:"home"
     },
     {
         icon:<BsGearWideConnected size={20} color={"grey"}/>,
-        text:"Automobiles & Motorcycles"
+        text:"Automobiles & Motorcycles",
+        cat:"automotive"
+    },
+    {
+        icon:<BsThreeDots size={20} color={"grey"}/>,
+        text:"Other",
+        cat:"other"
     },
 
 ]
@@ -41,11 +49,10 @@ export const categoryList=[
             <ul className="list-none ">
                 {
                     categoryList.map((cat)=>
-                        <li className="flex items-center gap-2 cursor-pointer text-sm px-3 py-2 hover:font-bold hover:shadow-md" key={cat.text} >
+                        <Link to={`/search?cat=${cat.cat}`} className="flex items-center gap-2 cursor-pointer text-sm px-3 py-2 hover:font-bold hover:shadow-md" key={cat.text} >
                             {cat.icon} 
                             <span className="hover:text-red-400 whitespace-nowrap">{cat.text}</span>
-                            
-                        </li>
+                        </Link>
                     )
                 }
             </ul>
