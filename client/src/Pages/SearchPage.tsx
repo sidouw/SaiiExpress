@@ -102,7 +102,7 @@ const SearchPage = ()=> {
                 <div className="grid grid-cols-2 gap-3 w-full sm:grid-cols-3 md:grid-cols-5  p-2" >
                     <>
                         {
-                            data?.pages.map(page=>(
+                            data?.pages?.map(page=>(
                                 page.products.map(prod=>(
                                     <ProductCard product={prod} large key={prod._id}  />
                                     ))

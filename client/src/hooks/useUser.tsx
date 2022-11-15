@@ -1,8 +1,8 @@
-import { useMutation,useQueryClient} from '@tanstack/react-query';
+import { useMutation,useQuery,useQueryClient} from '@tanstack/react-query';
 import {AxiosError} from "axios"
 
 import { IUpdateUserInfo,IUpdateUserPassword,IUpdateUserEmail, IShippingAdress, ICartItem, IWhishListItem} from '../api/types'
-import { updateUserAdressFn, updateUserdefualtAdressFn, updateUserEmailFn, updateUserInfoFn, updateUserPasswordFn,addProductToCartFn, addProductToWhishListtFn, removeProductFromWhishListtFn, removeProductFromCartFn} from '../api/users'
+import { updateUserAdressFn, updateUserdefualtAdressFn, updateUserEmailFn, updateUserInfoFn, updateUserPasswordFn,addProductToCartFn, addProductToWhishListtFn, removeProductFromWhishListtFn, removeProductFromCartFn, getUserOrdersFn} from '../api/users'
 
 
 
@@ -227,4 +227,8 @@ export function useUser(): useUser {
     removeProductFromwhishlist
 
   };
+}
+
+export const  useUserOrders=()=>{
+  return useQuery(['orders'],getUserOrdersFn,{refetchOnWindowFocus:false})
 }

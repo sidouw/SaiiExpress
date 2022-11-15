@@ -15,10 +15,10 @@ import useQueryParams from '../hooks/useQueryParams';
 
 
 const tabList=[
-    'ShippingAddress',
-    'WhishList',
-    'Orders',
-    'Settings',
+    'shippingAddress',
+    'whishList',
+    'orders',
+    'settings',
 ]
 
 const  UserPage = ()=> {
@@ -34,7 +34,7 @@ const  UserPage = ()=> {
     },[user,loadingAuth])    
 
     useEffect(()=>{
-        const ind =Math.max(0,tabList.findIndex(v=>v===tab)) 
+        const ind =Math.max(0,tabList.findIndex(v=>v===tab?.toLowerCase())) 
         setTabIndex(ind)
     },[tab])
 
@@ -73,7 +73,7 @@ const  UserPage = ()=> {
             </TabPanel>
 
             <TabPanel className={`${tabIndex===2 ? 'block' : 'hidden'} w-full`}>
-                <h2 className='text-2xl ml-5 mb-4 mt-5' >My Whish List</h2>
+                <h2 className='text-2xl ml-5 mb-4 mt-5' >My Orders List</h2>
                 <UserOrderList/>
             </TabPanel>
 

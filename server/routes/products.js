@@ -133,7 +133,6 @@ router.get('/products',async (req,res)=>{
                     $in: req.query.ids
                 }
             })
-            console.log(req.query.ids);
             if(!products){
                 return  res.status(400).send({error:'Product Not Found'})
             }

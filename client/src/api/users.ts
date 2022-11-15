@@ -116,3 +116,11 @@ export const removeProductFromWhishListtFn = async (product: string) => {
   }
   )
 }
+
+
+export const getUserOrdersFn = async () => {
+  return await authApi.get<any[]>('users/orders',{
+    headers:{
+    'Authorization':'Bearer '+cookies.get('token')
+  }})
+}

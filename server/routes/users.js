@@ -2,12 +2,12 @@ const express = require('express')
 const fs = require('fs')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
-const path = require("path")
 
 const User = require('../models/user')
 const MailVerification = require('../models/mailverification')
 const {auth} = require('../utils/authUtils')
 const {sendGmail} = require('../utils/emailUtils')
+const Order = require('../models/order')
 // TODO Validate the Emails
 
 
@@ -317,6 +317,16 @@ router.patch('/users/whish',auth,async(req,res)=>{
         res.status(500).send()
     }
 })
+
+router.get('/users/orders',auth,async(req,res)=>{
+    try {
+        const orders = await Order.find({user:req.user._id,confirmed:true}).populate('product')
+        res.send(orders)
+    } catch (error) {
+        res.status(500).send()
+    }
+})
+
 
 // Delete User 
 // router.delete('/users',auth,async (req,res)=>{

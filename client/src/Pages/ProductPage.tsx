@@ -105,7 +105,19 @@ const ProductPage = ()=> {
                     <BsHeart size={20} />
                   </button>
               </div>
-              <MobilePlaceOrder/>
+              <div className='fixed flex justify-around sm:hidden sm:pointer-events-none gap-2 right-0 left-0 bottom-0 p-4 z-10 bg-white border-t shadow' >
+      
+                    <button onClick={onBuyItem} className='rounded-md text-lg font-bold text-white bg-red-400 flex-1 py-2 hover:brightness-110 hover:shadow-md' >
+                      Buy Now
+                    </button>
+                    <button onClick={onAddItemToCart} className='rounded-md text-lg font-bold text-white bg-red-500 flex-1 py-2 hover:brightness-110 hover:shadow-md'>
+                      Add to Cart
+                    </button>
+                    <button onClick={onWhishListProduct} className='rounded-md text-lg font-bold text-black bg-gray-300 px-4 py-2 hover:brightness-110 hover:shadow-md'>
+                      <BsHeart size={20} />
+                    </button>
+
+              </div>
           </div>
 
         </div>
@@ -122,18 +134,3 @@ const ProductPage = ()=> {
 export default ProductPage
 
 
-const MobilePlaceOrder = ()=>(
-  <div className='fixed flex justify-around sm:hidden sm:pointer-events-none gap-2 right-0 left-0 bottom-0 p-4 z-10 bg-white border-t shadow' >
-      
-          <button className='rounded-md text-lg font-bold text-white bg-red-400 flex-1 py-2 hover:brightness-110 hover:shadow-md' >
-            Buy Now
-          </button>
-          <button className='rounded-md text-lg font-bold text-white bg-red-500 flex-1 py-2 hover:brightness-110 hover:shadow-md'>
-            Add to Cart
-          </button>
-          <button className='rounded-md text-lg font-bold text-black bg-gray-300 px-4 py-2 hover:brightness-110 hover:shadow-md'>
-            <BsHeart size={20} />
-          </button>
-
-  </div>
-)

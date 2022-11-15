@@ -90,7 +90,7 @@ export function useAuthed ():TAuthedUSer{
     retry: 0,
     // should be refetched in the background every 8 hours
     staleTime: 1000 * 60 * 60 * 8,
-    refetchOnWindowFocus : false
+    refetchOnWindowFocus : true
   })
   
   return {user:data,loadingAuth:isLoading}

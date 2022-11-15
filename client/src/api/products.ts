@@ -19,7 +19,6 @@ export const getProducts = async (ids:string[]) => {
   }
 
 export const getBestSellingProducts = async (cat='',lim=30) => {
-  console.log(lim);
     return await authApi.get<IProduct[]>(`/products/bestSelling?cat=${cat}&lim=${lim}`)
   }
 

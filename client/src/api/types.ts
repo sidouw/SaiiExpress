@@ -99,3 +99,10 @@ export interface IWhishListItem {
   product:string
 }
 
+export interface ICheckoutOrder {
+  orders:ICartItem[]
+  adress:IShippingAdress
+}
+
+
+

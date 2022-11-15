@@ -13,6 +13,7 @@ require('../utils/emailUtils').emailInit()
 
 const usersroute = require('../routes/users')
 const productsroute = require('../routes/products')
+const checkoutroute = require('../routes/checkout')
 
 app.use(cors())
 
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api",usersroute)
 app.use("/api",productsroute)
+app.use("/api",checkoutroute)
 
 
 app.listen(process.env.PORT,()=>{

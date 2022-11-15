@@ -11,6 +11,7 @@ import ForgotPassword from "../Pages/ForgotPassword"
 import UserPage from "../Pages/UserPage"
 import MainPage from '../Pages/MainPage';
 import ConfirmationPage from '../Pages/ConfirmationPage';
+import CheckoutCompletedPage from '../Pages/CheckoutCompletedPage';
 
 const Err= () =>(<h1>Errr</h1>)
 
@@ -23,6 +24,7 @@ const Router = createBrowserRouter(
                 <Route element={<SearchPage />} path='search' />
                 <Route element={<ProductPage />} path='product/:id' />
                 <Route element={<CheckoutPage/>} path='checkout' />
+                <Route element={<CheckoutCompletedPage/>} path='checkout/completed' />
                 <Route element={<UserPage />} path='user' />
                 <Route element={<ConfirmationPage />} path='confirm/:id' />
             </Route>

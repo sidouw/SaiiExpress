@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { IProduct, IShippingAdress } from '../api/types';
 import ShippingAdress from '../Components/ShippingAdressCard';
 import { useAuthed } from '../hooks/useAuth';
+import useCheckout from '../hooks/useCheckout';
 import { useGetProduct,useGetProducts } from '../hooks/useProduct';
 import useQueryParams from '../hooks/useQueryParams';
 import { useUser } from '../hooks/useUser';
@@ -34,6 +35,8 @@ const CheckoutPage = ()=> {
     
     const {products,status:productsStatus} = useGetProducts(productsListFromCart)
     
+    const checkout = useCheckout()
+
     useEffect(()=>{
        setSelectAdress(user?.shippingadresses.find((adr)=>adr.default)) 
     },[user])
@@ -57,7 +60,13 @@ const CheckoutPage = ()=> {
         })
         setCheckoutItmes([...checkoutItemList])
 
-    },[products,user?.cart])   
+    },[products,user?.cart])  
+
+    useEffect(()=>{
+        checkout.isLoading
+        if (!checkout.data) return
+        window.location.href = checkout.data.data
+    },[checkout.data])   
 
 
     const onSetShippingAdress = (adress:IShippingAdress)=>{
@@ -72,6 +81,13 @@ const CheckoutPage = ()=> {
         setCheckoutItmes([...checkoutItems])
     }
 
+    const onPlaceOrder= ()=>{
+        if(!checkoutItems) return 
+        if(!selectAdress) return 
+        const orders = checkoutItems.map(ch=>({product:(ch.product ? ch.product._id : ""),sku:ch.sku,qty:ch.qty}))
+        checkout.mutate({orders,adress:selectAdress})
+        
+    }
   return (
     <>
         <div className="w-full pb-16 sm:pb-5  bg-gray-100">
@@ -114,7 +130,7 @@ const CheckoutPage = ()=> {
 
                         <div className="flex justify-between items-center" >
                             <span className="text-sm font-semibold">Total item costs</span>
-                            <span className="text-sm font-semibold">€ {checkoutItems ? checkoutItems.reduce((partialSum, a) => partialSum + ((a.product?.skus[a.sku].price as number * a.qty)/1000), 0) : 0}</span>
+                            <span className="text-sm font-semibold">€ {checkoutItems ? checkoutItems.reduce((partialSum, a) => partialSum + ((a.product?.skus[a.sku].price as number * a.qty)), 0) : 0}</span>
                         </div>
                         <div className="flex justify-between items-center">
                             <span className="text-sm font-semibold">Promo Code</span>
@@ -129,9 +145,9 @@ const CheckoutPage = ()=> {
                     <div className="hidden sm:flex flex-col gap-4">
                         <div className="flex justify-between items-center">
                             <span className="text-lg font-bold">Total</span>
-                            <span className="text-lg font-bold">€ {checkoutItems ? checkoutItems.reduce((partialSum, a) => partialSum + ((a.product?.skus[a.sku].price as number * a.qty)/1000), 0) : 0}</span>
+                            <span className="text-lg font-bold">€ {checkoutItems ? checkoutItems.reduce((partialSum, a) => partialSum + ((a.product?.skus[a.sku].price as number * a.qty)), 0) : 0}</span>
                         </div>
-                        <button className='font-semibold bg-red-400 w-full text-lg  rounded-lg py-2 px-3 text-white hover:brightness-110'>Place Order</button>
+                        <button onClick={onPlaceOrder} disabled ={checkout.isLoading} className='font-semibold bg-red-400 w-full text-lg  rounded-lg py-2 px-3 text-white hover:brightness-110'>Place Order</button>
                     </div>
                 </div>
                 
@@ -139,9 +155,9 @@ const CheckoutPage = ()=> {
             <div className='fixed flex sm:hidden sm:pointer-events-none flex-col gap-2 right-0 left-0 bottom-0 z-10 p-4 bg-white border-t shadow' >
                 <div className='flex justify-between w-full text-gray-900 font-semibold text-lg '>
                     <span >Total</span>
-                    <span>€ {checkoutItems ? checkoutItems.reduce((partialSum, a) => partialSum + ((a.product?.skus[a.sku].price as number * a.qty)/1000), 0) : 0}</span>
+                    <span>€ {checkoutItems ? checkoutItems.reduce((partialSum, a) => partialSum + ((a.product?.skus[a.sku].price as number * a.qty)), 0) : 0}</span>
                 </div>
-                <button className='font-bold text-white bg-red-400 rounded-lg py-2 px-3' >Place Order</button>
+                <button onClick={onPlaceOrder} disabled={checkout.isLoading} className='font-bold text-white bg-red-400 rounded-lg py-2 px-3' >Place Order</button>
             </div>
 
         </div>
@@ -198,7 +214,7 @@ const CheckoutProduct = ({item,handelQty,showRemoveBtn}:CheckoutProductPropTypes
                 <span>{item.product?.name}</span>
                 <span className="text-xs text-gray-600">{item.product?.skus[item.sku].name}</span>
                 <div >
-                    <span className="text-gray-900 font-semibold">€ {item.product?.skus[item.sku].price as number/1000}</span>
+                    <span className="text-gray-900 font-semibold">€ {item.product?.skus[item.sku].price as number}</span>
                 
                     <div className='border-b border-b-gray-200 flex items-center py-2 gap-2 w-full '>
                         <span className='text-sm mr-auto' >Quantity:</span>
