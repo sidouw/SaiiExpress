@@ -3,7 +3,6 @@ import {useForm, FieldValues} from "react-hook-form";
 
 import {useAuthed} from '../hooks/useAuth';
 import {useUser} from '../hooks/useUser';
-import {updatePssword} from '../api/users'
 
 
 

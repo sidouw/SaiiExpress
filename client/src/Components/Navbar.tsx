@@ -95,7 +95,7 @@ const Navbar = () => {
             <div className='hidden sm:flex gap-2' >
                 {!loadingAuth &&!user?.fullname ?
                 <>
-                    <Link className='font-semibold bg-red-400  text-lg rounded-lg p-1 px-2 text-white hover:brightness-110' o='auth'>
+                    <Link className='font-semibold bg-red-400  text-lg rounded-lg p-1 px-2 text-white hover:brightness-110' to='auth'>
                         Register
                     </Link>
                     <Link className='font-semibold border-2 border-gray-900 bg-white  text-lg rounded-lg p-1 px-2 hover:border-red-400 hover:text-red-400 ' to='auth'>

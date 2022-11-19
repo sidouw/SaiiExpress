@@ -1,0 +1,27 @@
+version: "3"
+services:
+  app:
+    container_name: saiiexpress-front
+    image: client:latest
+    restart: unless-stopped
+    env_file:
+      - client/.env
+    networks:
+      - local_net
+    depends_on:
+      - api
+    ports:
+      - "8080:8080"
+  api:
+    container_name: saiiexpress-back
+    image: server:latest
+    restart: unless-stopped
+    env_file:
+      - server/.env
+    networks:
+      - local_net
+    ports:
+      - "5000:5000"
+networks:
+  local_net:
+    driver: bridge

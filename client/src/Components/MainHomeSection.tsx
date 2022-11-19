@@ -2,10 +2,10 @@ import Categories from "./Categories"
 import ItemViewer from "./ItemViewer"
 import HomeUserCard from './UserHomeCard'
 
-import mg1 from '../assets/1.jpg'
-import mg2 from '../assets/2.jpg'
-import mg3 from '../assets/3.jpg'
-import mg4 from '../assets/4.jpg'
+const mg1 = 'https://api.lorem.space/image/watch?w=640&h=480&r=7329'
+const mg2 = 'https://api.lorem.space/image/watch?w=640&h=480&r=3189'
+const mg3 = 'https://api.lorem.space/image/shoes?w=640&h=480&r=2134'
+const mg4 = 'https://api.lorem.space/image/watch?w=640&h=480&r=1466'
 
 
 const mgItems = [

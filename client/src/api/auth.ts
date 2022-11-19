@@ -2,19 +2,13 @@ import axios from 'axios';
 import cookies from 'js-cookie'
 import {IRegisterUser,ILoginUser,GenericResponse,ILoginResponse, IUser} from "./types"
 
-const BASE_URL = 'http://127.0.0.1:5000/api/'
+const BASE_URL = import.meta.env.VITE_BASE_URL
 
 export const authApi = axios.create({
   baseURL: BASE_URL,
 })
 
 authApi.defaults.headers.common['Content-Type'] = 'application/json';
-
-
-// export const refreshAccessTokenFn = async () => {
-//     const response = await authApi.get<ILoginResponse>('auth/refresh');
-//     return response.data;
-//   };
 
 
 

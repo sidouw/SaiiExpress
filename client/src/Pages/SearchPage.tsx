@@ -15,10 +15,10 @@ const SearchPage = ()=> {
     const [sortBy,setSortBy] = useState<string>("rating")
     const [order,setOrder] = useState<number>(-1)
     const [fourStars,setFourStars] = useState<boolean>(false)
-    const maxPRef = useRef<LegacyRef<HTMLInputElement>>()
-    const minPRef = useRef<LegacyRef<HTMLInputElement>>()
+    const maxPRef = useRef<any>()
+    const minPRef = useRef<any>()
 
-    const scrollRef = useRef<HTMLDivElement>()
+    const scrollRef = useRef<any>()
     const ScrellDivVisible = useOnScreen(scrollRef,'10px')
     const {data,isFetching,hasNextPage,fetchNextPage,refetch} = useInfiniteQuery(['products'],
     async ({ pageParam = 0 }) => {

@@ -1,6 +1,5 @@
 
 import { IProduct } from '../api/types'
-import t from '../assets/1.jpg'
 import { useUserOrders } from '../hooks/useUser'
 
 

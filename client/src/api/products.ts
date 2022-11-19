@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {IProduct, ISearchPage} from "./types"
 
-const BASE_URL = 'http://127.0.0.1:5000/api/'
+const BASE_URL = import.meta.env.VITE_BASE_URL
 
 export const authApi = axios.create({
   baseURL: BASE_URL,
